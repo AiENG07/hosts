@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Domain IP Map</title>
+</head>
+<body>
+    <h1>Domain IP Map</h1>
+    <table id="domainTable"></table>
+
+    <script>
+        fetch('./domain_ip_map.txt')
+            .then(response => response.text())
+            .then(data => {
+                const table = document.getElementById('domainTable');
+                data.trim().split('\n').forEach(line => {
+                    const row = table.insertRow();
+                    const cell1 = row.insertCell(0);
+                    const cell2 = row.insertCell(1);
+                    cell1.textContent = line.split('\t')[0];
+                    cell2.textContent = line.split('\t')[1];
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
+</body>
+</html>
