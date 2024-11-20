@@ -4,8 +4,6 @@ import logging
 
 # 设置日志记录
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-
-
 def get_ip_address(domain):
     try:
         ip = socket.gethostbyname(domain)

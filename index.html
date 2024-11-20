@@ -3,13 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>Domain IP Map</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse; /* 合并边框 */
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd; /* 定义边框样式 */
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+    </style>
 </head>
 <body>
     <h1>Domain IP Map</h1>
     <table id="domainTable"></table>
 
     <script>
-        fetch('./domain_ip_map.txt')
+        fetch('domain_ip_map.txt')
             .then(response => response.text())
             .then(data => {
                 const table = document.getElementById('domainTable');
@@ -18,7 +49,7 @@
                     const cell1 = row.insertCell(0);
                     const cell2 = row.insertCell(1);
                     cell1.textContent = line.split('\t')[0];
-                    cell2.textContent = line.split('\t')[1];
+                    cell2.textContent = '' + line.split('\t')[1];
                 });
             })
             .catch(error => console.error('Error:', error));
