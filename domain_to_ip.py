@@ -1,6 +1,7 @@
 import socket
 import concurrent.futures
 import logging
+from datetime import datetime
 
 # 设置日志记录
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -32,10 +33,20 @@ def main():
                     ip_dict[domain] = ip
             except Exception as exc:
                 logging.error(f"{domain} generated an exception: {exc}")
+    # 获取当前时间
+    current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    author = "AiENG07"
 
-    with open('domain_ip_map.txt' and 'hosts', 'w') as file:
+    with open('domain_ip_map.txt', 'w') as file1, open('hosts', 'w') as file2:
+        file1.write(f"# Update at: {current_time} by {author}\n")
+        file2.write(f"# Update at: {current_time} by {author}\n")
+        file1.write("# GitHub Host Start\n\n")
+        file2.write("# GitHub Host Start\n\n")
         for domain, ip in ip_dict.items():
-            file.write(f"{ip}\t{domain}\n")
+            file1.write(f"{ip}\t    {domain}\n")
+            file2.write(f"{ip}\t    {domain}\n")
+        file1.write("\n# GitHub Host End\n")
+        file2.write("\n# GitHub Host End\n")
 
 if __name__ == '__main__':
     main()
