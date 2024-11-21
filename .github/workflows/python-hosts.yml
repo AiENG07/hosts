@@ -6,7 +6,7 @@ on:
   push:  # 也可以在代码被推送到仓库时触发
 
 jobs:
-  hosts:  # 定义一个名为build的job
+  hosts:  # 定义一个名为hosts的job
     runs-on: ubuntu-latest  # 指定运行环境为最新的Ubuntu
 
     steps:
@@ -15,7 +15,6 @@ jobs:
       uses: actions/setup-python@v4  # 使用setup-python Action
       with:
         python-version: '3.10'  # 指定Python版本
-        node-version: '16'  # 或者你需要的特定版本
     - name: Run Python script  # 运行Python脚本
       run: |
-        python ./domain_to_ip.py  # 执行main.py脚本
+        python ./domain_to_ip.py  # 执行domain_to_ip.py脚本
