@@ -21,4 +21,4 @@ jobs:
         pip install -r requirements.txt  # 安装requirements.txt中的依赖
     - name: Run Python script  # 运行Python脚本
       run: |
-        python domain_to_ip.py  # 执行main.py脚本
+        python ./domain_to_ip.py  # 执行main.py脚本
