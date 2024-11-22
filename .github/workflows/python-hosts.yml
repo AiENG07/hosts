@@ -2,7 +2,8 @@ name: Auto run hosts
 
 on:
   schedule:
-    - cron: '0 8 * * *'  # 每天早上8点（UTC时间）触发
+    # - cron: '0 8 * * *'  # 每天早上8点（UTC时间）触发
+    - cron: '0 */2 * * *'  # 每2小时（UTC时间）触发
   push:  # 也可以在代码被推送到仓库时触发
 
 jobs:
@@ -33,15 +34,13 @@ jobs:
           git config --global user.name AiENG07
           git add .
           git commit -m "Update hosts"
+          if: steps.commit.outputs.status == 'failure'
+          run: exit 1
+          git push
       continue-on-error: true
       
-    - name: Check on failures
-      if: steps.commit.outputs.status == 'failure'
-      run: exit 1
 
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.COMMIT_TOKEN }}
+      
+
 
     
