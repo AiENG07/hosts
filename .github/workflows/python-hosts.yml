@@ -33,16 +33,15 @@ jobs:
           git config --global user.name AiENG07
           git add .
           git commit -m "Update hosts"
-          git push
       continue-on-error: true
       
     - name: Check on failures
       if: steps.commit.outputs.status == 'failure'
       run: exit 1
 
-    # - name: Push changes
-    #   uses: ad-m/github-push-action@master
-    #   with:
-    #     github_token: ${{ secrets.COMMIT_TOKEN }}
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.COMMIT_TOKEN }}
 
     
